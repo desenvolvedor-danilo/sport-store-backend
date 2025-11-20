@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,16 +25,21 @@ public class ShoppingController {
     }
    
    @DeleteMapping("/remove")
-   public String removeCart(@RequestParam("codigo") long codigo, @RequestParam("email")String email){
-   return shoppingService.removeCart(codigo,email);
+   public void remove(@RequestParam("codigo") long codigo){
+   shoppingService.remove(codigo);
    }
+
+//    @DeleteMapping("/remove")
+//    public String removeCart(@RequestParam("codigo") long codigo, @RequestParam("email")String email){
+//    return shoppingService.removeCart(codigo,email);
+//    }
    @GetMapping("/findall")
    public Carrinho getAllShopping(@RequestParam("email")String email){
 return shoppingService.getCarrinho(email);
  }
-//    @PutMapping("/edit")
-//    public int editCart(@RequestParam(name = "id")String id, @RequestParam(name = "quantity")int quantity){
-//     return shoppingService.editCart(id, quantity);
+@PutMapping("/edit")
+   public int editCart(@RequestParam(name = "id")long id, @RequestParam(name = "quantity")int quantity){
+    return shoppingService.edit(id, quantity);
 
-//    }
+  }
 }

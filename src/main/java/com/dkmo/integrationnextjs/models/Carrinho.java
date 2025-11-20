@@ -46,9 +46,4 @@ public class Carrinho {
     public void removeItens(Products products){
         itens.removeIf(product->product.getProducts().getId().equals(products.getId()));
     }
-    // public void removerItens(ItensCarrinho item) {
-    //     itens.remove(item);
-    //     item.setCarrinho(null);
-    // }
-    
 }
