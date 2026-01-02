@@ -41,7 +41,7 @@ public class UserFilter extends OncePerRequestFilter{
             } catch (Exception e) {
             SecurityContextHolder.clearContext();
             // System.out.println(e.getMessage());
-            throw new BadCredentialsException("Token invalido",e.getCause());
+            throw new BadCredentialsException("Token invalido",e.fillInStackTrace());
             
             }
             

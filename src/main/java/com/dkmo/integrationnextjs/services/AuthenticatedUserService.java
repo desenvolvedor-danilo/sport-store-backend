@@ -69,7 +69,7 @@ public class AuthenticatedUserService implements UserDetailsService {
         Account user = repository.findByEmail(login);
         var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return TokenDto.builder().token(setToken(user, 1)).refreshToken(setToken(user, 120)).build();
+        return TokenDto.builder().token(setToken(user, 15)).refreshToken(setToken(user, 43200)).build();
 
     }
 }
