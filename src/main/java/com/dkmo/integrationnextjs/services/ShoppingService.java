@@ -2,6 +2,8 @@ package com.dkmo.integrationnextjs.services;
 
 
 import java.util.Optional;
+
+import org.aspectj.apache.bcel.classfile.ExceptionTable;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -54,7 +56,22 @@ public class ShoppingService {
       UserRegister user = registerRepository.findByEmail(email);
       return user.getCarrinho();
    }
-   @SuppressWarnings("null")
+   // public int editCart(String id,int quantity){
+   //    long idl = Long.parseLong(id);
+   //    Optional<Carrinho> shopping = shoppingRepository.findById(idl);
+   //    if(shopping.isPresent()){
+   //       shopping.get().getItens().forEach(itens -> {
+   //          itens.setQuantity(quantity);
+            
+   //       });
+   //       //System.out.println(shopping.get().getItens().iterator().next().getQuantity());
+   //       shoppingRepository.save(shopping.get());
+   //       return quantity;
+         
+   //    }
+   //    throw new RuntimeException("Erro ao atribuir novo valor");
+      
+   // }
    public int edit(Long id,int quantity){
       Optional<ItensCarrinho> itens = itensCarrinhoRepository.findById(id);
       if(itens.isPresent()){
