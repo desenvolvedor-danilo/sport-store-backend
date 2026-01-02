@@ -6,13 +6,13 @@ import org.springframework.stereotype.Service;
 
 import com.dkmo.integrationnextjs.EmailService.SenderEmail;
 import com.dkmo.integrationnextjs.dto.LoginDto;
-import com.dkmo.integrationnextjs.interfaces.IRedifinePassword;
-import com.dkmo.integrationnextjs.models.Logins;
-import com.dkmo.integrationnextjs.models.UserRegister;
+import com.dkmo.integrationnextjs.interfaces.PasswordResetService;
+import com.dkmo.integrationnextjs.models.Account;
+import com.dkmo.integrationnextjs.models.Register;
 import com.dkmo.integrationnextjs.repository.LoginsRepository;
 import com.dkmo.integrationnextjs.repository.RegisterRepository;
 @Service
-public class RedifinePasswordService implements IRedifinePassword{
+public class RedifinePasswordService implements PasswordResetService{
 @Autowired
 private RegisterRepository registerRepository;
 @Autowired
@@ -21,7 +21,7 @@ private LoginsRepository loginsRepository;
     private SenderEmail send;
     @Override
     public String redifinePassword(String email) {
-        Logins user = loginsRepository.findByEmail(email);
+        Account user = loginsRepository.findByEmail(email);
         if (user != null) {
             String code = send.sendEmail(email);
             user.setCode(code);
@@ -32,7 +32,7 @@ private LoginsRepository loginsRepository;
 
     @Override
     public ResponseEntity<String> resetPassword(String email, LoginDto password) {
-        UserRegister user = registerRepository.findByEmail(email);
+        Register user = registerRepository.findByEmail(email);
         if (user != null) {
             user.setPassword(password.password());
             return ResponseEntity.ok().body(user.getPassword());

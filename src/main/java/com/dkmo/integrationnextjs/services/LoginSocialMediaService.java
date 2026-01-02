@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.view.RedirectView;
 import com.dkmo.integrationnextjs.GenerationTokenJWT.GenerationJWTForMediaSocial;
 import com.dkmo.integrationnextjs.enums.Roles;
-import com.dkmo.integrationnextjs.models.Logins;
+import com.dkmo.integrationnextjs.models.Account;
 import com.dkmo.integrationnextjs.repository.LoginsRepository;
 import com.dkmo.integrationnextjs.utils.AddCookieInResponse;
 import jakarta.servlet.ServletException;
@@ -29,7 +29,7 @@ public class LoginSocialMediaService {
             throws IOException, ServletException {
         AddCookieInResponse cookies = new AddCookieInResponse();
         OAuth2AuthenticationToken typeAuth = (OAuth2AuthenticationToken) authentication;
-        Logins logins = loginsRepository.findByEmail(user.getAttribute("email"));
+        Account logins = loginsRepository.findByEmail(user.getAttribute("email"));
         if (logins != null) { 
             logins.setEmail(user.getAttribute("email"));
             logins.setUsuario(user.getAttribute("name"));
@@ -43,7 +43,7 @@ public class LoginSocialMediaService {
             }
             loginsRepository.save(logins);
         } else {
-            Logins login = new Logins();
+            Account login = new Account();
             login.setEmail(user.getAttribute("email"));
             login.setUsuario(user.getAttribute("name"));
             login.setRole(Roles.USER);

@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.dkmo.integrationnextjs.interfaces.IHandlerFiles;
-import com.dkmo.integrationnextjs.models.Logins;
+import com.dkmo.integrationnextjs.interfaces.FileHandler;
+import com.dkmo.integrationnextjs.models.Account;
 import com.dkmo.integrationnextjs.repository.LoginsRepository;
 
 @Service
@@ -17,7 +17,7 @@ public class EditPictureProfile {
     @Autowired
     private LoginsRepository loginsRepository;
     public String editPicture(MultipartFile file, String email) {
-        IHandlerFiles iHandlerFiles = new IHandlerFiles() {
+        FileHandler iHandlerFiles = new FileHandler() {
             @Override
             public String saveFile(MultipartFile file) {
                 var path = "src/main/resources/static/files/profile/";
@@ -34,7 +34,7 @@ public class EditPictureProfile {
                 return null;
             }
         };
-        Logins logins = loginsRepository.findByEmail(email);
+        Account logins = loginsRepository.findByEmail(email);
         if(logins != null){
             logins.setFotoPerfil(iHandlerFiles.saveFile(file));
             loginsRepository.save(logins);

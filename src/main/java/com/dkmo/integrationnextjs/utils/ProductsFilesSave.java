@@ -3,8 +3,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.springframework.web.multipart.MultipartFile;
-import com.dkmo.integrationnextjs.interfaces.IHandlerFiles;
-public class ProductsFilesSave implements IHandlerFiles {
+import com.dkmo.integrationnextjs.interfaces.FileHandler;
+public class ProductsFilesSave implements FileHandler {
     
     @Override
     public String saveFile(MultipartFile file) {

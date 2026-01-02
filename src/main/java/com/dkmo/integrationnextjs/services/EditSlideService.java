@@ -5,14 +5,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.dkmo.integrationnextjs.interfaces.IEditSlideService;
+import com.dkmo.integrationnextjs.interfaces.EditSlides;
 import com.dkmo.integrationnextjs.models.Slides;
 import com.dkmo.integrationnextjs.repository.SlidesRepository;
 import com.dkmo.integrationnextjs.utils.SlidesFilesSave;
 
 
 @Service
-public class EditSlideService implements IEditSlideService {
+public class EditSlideService implements EditSlides {
     @Autowired
     private SlidesRepository slideRepository;
     SlidesFilesSave slideFilesSave = new SlidesFilesSave();

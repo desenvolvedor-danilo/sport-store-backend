@@ -7,11 +7,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
 @Data
-public class Deal {
+@Table(name = "deal")
+public class Offers {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;

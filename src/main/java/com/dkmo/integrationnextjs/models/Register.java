@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -15,8 +16,8 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-// @Table(name = "TB_USERS")
-public class UserRegister{
+@Table(name = "user_register")
+public class Register{
     
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -42,12 +43,13 @@ public class UserRegister{
     private String localidade;
     @Column(nullable = false)
     private String uf;
+    @JsonManagedReference
     @OneToOne(mappedBy = "userRegister", cascade = CascadeType.ALL,orphanRemoval = true)
-    private Logins logins;
+    private Account logins;
     private String complemento;
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private Carrinho carrinho;    
+    private Cart carrinho;    
     
 }
 

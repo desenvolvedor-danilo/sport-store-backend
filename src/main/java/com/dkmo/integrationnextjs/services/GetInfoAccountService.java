@@ -5,14 +5,14 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.dkmo.integrationnextjs.interfaces.IGetInfoAccount;
-import com.dkmo.integrationnextjs.models.Logins;
-import com.dkmo.integrationnextjs.models.UserRegister;
+import com.dkmo.integrationnextjs.interfaces.AccountInfoProvider;
+import com.dkmo.integrationnextjs.models.Account;
+import com.dkmo.integrationnextjs.models.Register;
 import com.dkmo.integrationnextjs.repository.LoginsRepository;
 import com.dkmo.integrationnextjs.repository.RegisterRepository;
 
 @Service
-public class GetInfoAccountService implements IGetInfoAccount {
+public class GetInfoAccountService implements AccountInfoProvider {
     @Autowired
     private RegisterRepository registerRepository;
     @Autowired
@@ -20,15 +20,15 @@ public class GetInfoAccountService implements IGetInfoAccount {
 
     @Override
     @Cacheable("user info")
-    public UserRegister getInfoUsers(String email) {
-        UserRegister user = registerRepository.findByEmail(email);
+    public Register getInfoUsers(String email) {
+        Register user = registerRepository.findByEmail(email);
         return user;
     }
 
     @Override
-    @Cacheable("usernames")
+     @Cacheable("usernames")
     public ResponseEntity<String> getUsers(String email) {
-        Logins user = loginsRepository.findByEmail(email);
+        Account user = loginsRepository.findByEmail(email);
         if (user != null) {
             return ResponseEntity.ok().body(user.getUsuario());
         }
@@ -37,8 +37,8 @@ public class GetInfoAccountService implements IGetInfoAccount {
 
     @Override
     @Cacheable("verified accounts")
-    public boolean getVerifiedAccount(Logins email) {
-        Logins user = loginsRepository.findByEmail(email.getEmail());
+    public boolean getVerifiedAccount(Account email) {
+        Account user = loginsRepository.findByEmail(email.getEmail());
         if (user != null) {
 
             if (user.isVerifiedAccount()) {

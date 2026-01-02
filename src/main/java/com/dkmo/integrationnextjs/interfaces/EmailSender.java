@@ -1,5 +1,5 @@
 package com.dkmo.integrationnextjs.interfaces;
 
-public interface ISenderEmail {
+public interface EmailSender {
 public String sendEmail(String to);
 }

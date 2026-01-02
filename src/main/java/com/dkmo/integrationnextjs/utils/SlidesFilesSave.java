@@ -6,9 +6,9 @@ import java.nio.file.Paths;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.dkmo.integrationnextjs.interfaces.IHandlerFiles;
+import com.dkmo.integrationnextjs.interfaces.FileHandler;
 
-public class SlidesFilesSave implements IHandlerFiles {
+public class SlidesFilesSave implements FileHandler {
 
     @Override
     public String saveFile(MultipartFile file) {

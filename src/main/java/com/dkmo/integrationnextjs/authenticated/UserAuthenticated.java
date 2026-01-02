@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import com.dkmo.integrationnextjs.dto.LoginDto;
 import com.dkmo.integrationnextjs.dto.TokenDto;
 import com.dkmo.integrationnextjs.services.AuthenticatedUserService;
+
 @Component
 public class UserAuthenticated {
     @Autowired

@@ -5,12 +5,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.dkmo.integrationnextjs.interfaces.IGetProductsForCodigo;
+import com.dkmo.integrationnextjs.interfaces.ProductQueryService;
 import com.dkmo.integrationnextjs.models.Products;
 import com.dkmo.integrationnextjs.repository.ProductsRepository;
 
 @Service
-public class GetProdutcsForCodigo implements IGetProductsForCodigo {
+public class GetProdutcsForCodigo implements ProductQueryService {
     @Autowired
     private ProductsRepository productsRepository;
     

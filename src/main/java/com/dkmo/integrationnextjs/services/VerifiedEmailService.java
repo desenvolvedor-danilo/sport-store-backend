@@ -5,17 +5,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.dkmo.integrationnextjs.dto.ResponseConfirmedDto;
-import com.dkmo.integrationnextjs.interfaces.IVerifiedEmail;
-import com.dkmo.integrationnextjs.models.Logins;
+import com.dkmo.integrationnextjs.interfaces.EmailVerificationService;
+import com.dkmo.integrationnextjs.models.Account;
 import com.dkmo.integrationnextjs.repository.LoginsRepository;
 @Service
-public class VerifiedEmailService implements IVerifiedEmail{
+public class VerifiedEmailService implements EmailVerificationService{
 
     @Autowired
     private LoginsRepository loginsRepository;
     @Override
     public ResponseEntity<ResponseConfirmedDto> confirmEmail(String code) {
-        Logins userCode = loginsRepository.findByCode(code);
+        Account userCode = loginsRepository.findByCode(code);
         if (userCode != null) {
             userCode.setVerifiedAccount(true);
             loginsRepository.save(userCode);

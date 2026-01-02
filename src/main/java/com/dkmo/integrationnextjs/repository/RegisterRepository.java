@@ -2,10 +2,10 @@ package com.dkmo.integrationnextjs.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.dkmo.integrationnextjs.models.UserRegister;
+import com.dkmo.integrationnextjs.models.Register;
 
 
-public interface RegisterRepository extends JpaRepository<UserRegister,Long>{
-    UserRegister findByEmail(String user);
-    UserRegister findByUsername(String username);
+public interface RegisterRepository extends JpaRepository<Register,Long>{
+    Register findByEmail(String user);
+    Register findByUsername(String username);
 }

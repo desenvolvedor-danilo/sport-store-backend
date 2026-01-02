@@ -1,7 +1,7 @@
 package com.dkmo.integrationnextjs.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,9 +15,8 @@ import com.dkmo.integrationnextjs.dto.RequestRegisterDto;
 import com.dkmo.integrationnextjs.dto.ResponseConfirmedDto;
 import com.dkmo.integrationnextjs.dto.ResponseDto;
 import com.dkmo.integrationnextjs.dto.TokenDto;
-import com.dkmo.integrationnextjs.models.Logins;
-import com.dkmo.integrationnextjs.models.UserRegister;
-// import com.dkmo.integrationnextjs.services.AuthenticatedUserService;
+import com.dkmo.integrationnextjs.models.Account;
+import com.dkmo.integrationnextjs.models.Register;
 import com.dkmo.integrationnextjs.services.GetAuthentication;
 import com.dkmo.integrationnextjs.services.GetInfoAccountService;
 import com.dkmo.integrationnextjs.services.GetInfoLogins;
@@ -30,8 +29,6 @@ import com.dkmo.integrationnextjs.services.RegisterService;
 import com.dkmo.integrationnextjs.services.VerifiedCodeService;
 import com.dkmo.integrationnextjs.services.VerifiedEmailService;
 
-
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/user")
 public class LoginController {
@@ -108,33 +105,42 @@ public class LoginController {
         return infoAccountService.getUsers(email);
     }
 
-    @GetMapping("userinfo")
-    public UserRegister getInfoUsers(@RequestParam(name = "email")String email){
+    @GetMapping("/userinfo")
+    public Register getInfoUsers(@RequestParam(name = "email")String email){
         return infoAccountService.getInfoUsers(email);
     }
+    @GetMapping("/type-login")
+    public String getTypeLogin(@RequestParam(name = "email")String email){
+        return loginService.typeLogin(email);
+    }
 
-    @PostMapping("refresh-token")
-    public ResponseEntity<TokenDto> refreshToken(@RequestParam(name = "token") String refresh){
+    @PostMapping("/refresh-token")
+    // public ResponseEntity<TokenDto> refreshToken(@RequestParam(name = "token") String refresh){
+    //     return refreshTokenService.refreshToken(refresh);
+    // }
+public ResponseEntity<TokenDto> refreshToken(@CookieValue(name = "refresh-token") String refresh){
+    
+            
         return refreshTokenService.refreshToken(refresh);
     }
 
-    @PostMapping("edit-picture-profile")
+    @PostMapping("/edit-picture-profile")
     public String savePictureProfile(@RequestParam(name = "email") String email,@RequestParam(name = "file")MultipartFile file){
         return pictureProfileService.savePictureProfile(email, file);
     }
 
-    @GetMapping("get-picture-profile")
+    @GetMapping("/get-picture-profile")
     public String getPicture(@RequestParam(name = "email") String email){
         return getPictureProfile.getPictureProfile(email);
     }
 
-    @GetMapping("get-type-authentication")
+    @GetMapping("/get-type-authentication")
     public String getTypeAuthentication(String email){
         return getAuthentication.getTypeAuthentication(email);
     }
 
     @GetMapping("/info-login")
-    public Logins getUserForEmail(@RequestParam(name = "email") String email){
+    public Account getUserForEmail(@RequestParam(name = "email") String email){
         return infoLogins.getInfoLogins(email);
     }
 }

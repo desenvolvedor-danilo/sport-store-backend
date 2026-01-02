@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.dkmo.integrationnextjs.models.Products;
-import com.dkmo.integrationnextjs.models.UserRegister;
+import com.dkmo.integrationnextjs.models.Register;
 import com.dkmo.integrationnextjs.repository.ProductsRepository;
 import com.dkmo.integrationnextjs.repository.RegisterRepository;
 
@@ -45,7 +45,7 @@ public class GetProductService {
         return ResponseEntity.ok().body(products);
     }
     public List<Products>getProductsByCartShop(String email){
-        UserRegister user = registerRepository.findByEmail(email);
+        Register user = registerRepository.findByEmail(email);
         List<Products> products = productsRepository.findByCarrinhoId(user.getCarrinho().getId());
         if(!products.isEmpty()){
             return products;

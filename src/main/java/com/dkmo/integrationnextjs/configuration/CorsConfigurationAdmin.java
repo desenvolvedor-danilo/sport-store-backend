@@ -10,7 +10,9 @@ public class CorsConfigurationAdmin implements WebMvcConfigurer{
 public void addCorsMappings(@NonNull CorsRegistry registry){
     registry.addMapping("/admin/**")
     // .allowedOrigins("http://localhost:3000")
-    .allowedOrigins("*")
+    // .allowedOrigins("*")
+    .allowedOrigins("http://localhost:3000")
+//.allowCredentials(true)
     .allowedHeaders("*")
     .allowedMethods("GET","POST","PUT","DELETE");
 }

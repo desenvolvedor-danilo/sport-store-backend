@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.dkmo.integrationnextjs.interfaces.IDeleteProduct;
+import com.dkmo.integrationnextjs.interfaces.ProductDeletionService;
 import com.dkmo.integrationnextjs.models.Products;
 import com.dkmo.integrationnextjs.repository.ProductsRepository;
 @Service
-public class DeleteProductService implements IDeleteProduct{
+public class DeleteProductService implements ProductDeletionService{
 @Autowired
 private ProductsRepository productsRepository;
     @Override
