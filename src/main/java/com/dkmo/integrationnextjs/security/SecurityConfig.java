@@ -41,6 +41,7 @@ public class SecurityConfig {
         .requestMatchers(HttpMethod.GET,"/user/get-token").permitAll()
        // .requestMatchers(HttpMethod.GET,"/user/get-users").permitAll()
         .requestMatchers(HttpMethod.GET,"/user/userinfo").permitAll()
+        .requestMatchers(HttpMethod.GET,"/user/type-login").permitAll()
         .requestMatchers(HttpMethod.GET,"/user/verify").permitAll()
         .requestMatchers(HttpMethod.POST,"/admin/insert").permitAll()
         .requestMatchers("/oauth2/**,/login/oauth2/**,/home").permitAll()
@@ -50,9 +51,9 @@ public class SecurityConfig {
         .requestMatchers(HttpMethod.POST,"/admin/register").permitAll()
         .requestMatchers(HttpMethod.POST,"/admin/login").permitAll()
         .requestMatchers(HttpMethod.GET,"/admin/carrinho").permitAll()
-        .requestMatchers(HttpMethod.POST,"/deal/create").permitAll()
-        .requestMatchers(HttpMethod.GET,"/deal/findall").permitAll()
-        .requestMatchers(HttpMethod.GET,"/deal/findbycodigo").permitAll()
+        .requestMatchers(HttpMethod.POST,"/offers/create").permitAll()
+        .requestMatchers(HttpMethod.GET,"/offers/findall").permitAll()
+        .requestMatchers(HttpMethod.GET,"/offers/findbycodigo").permitAll()
         .requestMatchers(HttpMethod.GET,"/admin/search").permitAll()
         .requestMatchers(HttpMethod.GET,"/admin/codigo").permitAll()
         .requestMatchers(HttpMethod.POST,"/admin/slide-img").permitAll()
@@ -82,15 +83,8 @@ public class SecurityConfig {
         .exceptionHandling(ex -> ex.authenticationEntryPoint((req,res,authEx)->{
             res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             res.setContentType("application/json");
-            res.getWriter().write("Usuário ou senha incorrretos");
         }))
-        // .exceptionHandling(ex -> ex
-        //     .authenticationEntryPoint((req, res, authEx) -> {
-        //         res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        //         res.setContentType("application/json");
-        //         res.getWriter().write("{\"error\": \"Usuário ou senha incorretos\"}");
-        //     })
-        // )
+        
         .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
         .build();
     }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dkmo.integrationnextjs.models.Carrinho;
+import com.dkmo.integrationnextjs.models.Cart;
 import com.dkmo.integrationnextjs.services.ShoppingService;
 
 @RestController
@@ -34,7 +34,7 @@ public class ShoppingController {
 //    return shoppingService.removeCart(codigo,email);
 //    }
    @GetMapping("/findall")
-   public Carrinho getAllShopping(@RequestParam("email")String email){
+   public Cart getAllShopping(@RequestParam("email")String email){
 return shoppingService.getCarrinho(email);
  }
 @PutMapping("/edit")

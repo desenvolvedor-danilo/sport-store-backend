@@ -17,5 +17,5 @@ public class Slides {
    private String codigo;
    private String foto;
    @OneToOne(mappedBy = "slides")
-   private Deal deal;
+   private Offers deal;
 }

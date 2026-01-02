@@ -7,7 +7,7 @@ package com.dkmo.integrationnextjs.EmailService;
 
 import java.util.Random;
 
-import com.dkmo.integrationnextjs.interfaces.ISenderEmail;
+import com.dkmo.integrationnextjs.interfaces.EmailSender;
 // import com.dkmo.integrationnextjs.interfaces.ISenderMimeEmail;
 
 
@@ -24,7 +24,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SenderEmailMimeMessage implements ISenderEmail {
+public class SenderEmailMimeMessage implements EmailSender {
 
     
     @Override

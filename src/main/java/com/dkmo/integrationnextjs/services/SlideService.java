@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.dkmo.integrationnextjs.interfaces.IHandlerFiles;
+import com.dkmo.integrationnextjs.interfaces.FileHandler;
 import com.dkmo.integrationnextjs.models.Slides;
 import com.dkmo.integrationnextjs.repository.SlidesRepository;
 import com.dkmo.integrationnextjs.utils.SlidesFilesSave;
@@ -18,7 +18,7 @@ public class SlideService {
 
     public ResponseEntity<String> insertSlide(String codigo, MultipartFile file) {
         Slides slide = new Slides();
-        IHandlerFiles handlerFiles = new SlidesFilesSave();
+        FileHandler handlerFiles = new SlidesFilesSave();
         slide.setFoto(handlerFiles.saveFile(file));
         slide.setCodigo(codigo);
         slidesRepository.save(slide);

@@ -10,17 +10,19 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Data;
 @Data
 @Entity
-public class ItensCarrinho {
+@Table(name = "itens_carrinho")
+public class CartItens {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
 @ManyToOne(fetch = FetchType.LAZY)
 @JoinColumn(name = "carrinho_id")
 @JsonBackReference
-private Carrinho carrinho;
+private Cart carrinho;
 
 @ManyToOne
 @JsonBackReference
@@ -32,8 +34,8 @@ private String urlImage;
 
 private int quantity;
 private double totalPrice;
-public ItensCarrinho(){}    
-public ItensCarrinho(Carrinho carrinho,Products products,int quantity){
+public CartItens(){}    
+public CartItens(Cart carrinho,Products products,int quantity){
 this.carrinho = carrinho;
 this.products = products;
 this.quantity = quantity;

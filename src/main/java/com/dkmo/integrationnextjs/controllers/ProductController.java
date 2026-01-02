@@ -91,7 +91,7 @@ public class ProductController {
     }
     @PutMapping("/edit-product")
     public ResponseEntity<Products> editProduct(@RequestBody ProductDto productDto) {
-        return editProductService.editProdutoService(productDto);
+        return editProductService.editProductService(productDto);
     }
     @DeleteMapping("/delete-product")
     public ResponseEntity<String> deleteProduct(@RequestParam(name = "codigo") long codigo){

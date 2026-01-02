@@ -7,9 +7,9 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
-import com.dkmo.integrationnextjs.interfaces.ISenderEmail;
+import com.dkmo.integrationnextjs.interfaces.EmailSender;
 @Component
-public class SenderEmail implements ISenderEmail {
+public class SenderEmail implements EmailSender {
     @Autowired
     private JavaMailSender sender;
     

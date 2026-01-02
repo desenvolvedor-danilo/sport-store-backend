@@ -12,10 +12,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
 @Data
+@Table(name = "products")
 public class Products {
 
 @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,14 +34,14 @@ private double precoNovo;
 private double desconto;
 private double parcelado;
 @OneToMany(fetch = FetchType.EAGER)
-private List<PhotosOfProducts> photosOfProducts;
+private List<ProductsImages> photosOfProducts;
 private double valorParcela;
 @Lob
 @Column(length = 50000)
 private String descricao;
 @ManyToOne
 @JsonBackReference
-private Carrinho carrinho;
+private Cart carrinho;
 }
 
 

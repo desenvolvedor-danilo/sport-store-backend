@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.dkmo.integrationnextjs.interfaces.IHandlerFiles;
-import com.dkmo.integrationnextjs.models.PhotosOfProducts;
+import com.dkmo.integrationnextjs.interfaces.FileHandler;
+import com.dkmo.integrationnextjs.models.ProductsImages;
 import com.dkmo.integrationnextjs.models.Products;
 import com.dkmo.integrationnextjs.repository.PhotosOfProductsRepository;
 import com.dkmo.integrationnextjs.repository.ProductsRepository;
@@ -31,7 +31,7 @@ public class PhotosOfProductsService {
             return ResponseEntity.badRequest().body("Produto não encontrado com o código: " + codigo);
         }
         for (MultipartFile multipartFile : file) {
-            IHandlerFiles handlerFiles = new IHandlerFiles() {
+            FileHandler handlerFiles = new FileHandler() {
                 @Override
                 public String saveFile(MultipartFile file) {
                     try {
@@ -49,7 +49,7 @@ public class PhotosOfProductsService {
             };
 
             String url = handlerFiles.saveFile(multipartFile);
-            PhotosOfProducts photosOfProducts = new PhotosOfProducts();
+            ProductsImages photosOfProducts = new ProductsImages();
             photosOfProducts.setUriPicture(url);
             photosOfProducts.setProducts(products);
             photosOfProductsRepository.save(photosOfProducts);
@@ -59,10 +59,10 @@ public class PhotosOfProductsService {
     }
 
     @Cacheable("photos of products")
-    public ResponseEntity<List<PhotosOfProducts>> findByProductsId(String codigo) {
+    public ResponseEntity<List<ProductsImages>> findByProductsId(String codigo) {
         long id = Long.parseLong(codigo);
 
-        List<PhotosOfProducts> photosOfProducts = photosOfProductsRepository.findByProductsId(id);
+        List<ProductsImages> photosOfProducts = photosOfProductsRepository.findByProductsId(id);
         if (!photosOfProducts.isEmpty()) {
             return ResponseEntity.ok(photosOfProductsRepository.findByProductsId(id));
         }

@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.dkmo.integrationnextjs.models.PhotosOfProducts;
+import com.dkmo.integrationnextjs.models.ProductsImages;
 
-public interface PhotosOfProductsRepository extends JpaRepository<PhotosOfProducts, Long> {
- List<PhotosOfProducts> findByProductsId(Long codigo);   
+public interface PhotosOfProductsRepository extends JpaRepository<ProductsImages, Long> {
+ List<ProductsImages> findByProductsId(Long codigo);   
 }

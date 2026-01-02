@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import com.dkmo.integrationnextjs.models.Carrinho;
-import com.dkmo.integrationnextjs.models.ItensCarrinho;
+import com.dkmo.integrationnextjs.models.Cart;
+import com.dkmo.integrationnextjs.models.CartItens;
 import com.dkmo.integrationnextjs.models.Products;
 
-import com.dkmo.integrationnextjs.models.UserRegister;
+import com.dkmo.integrationnextjs.models.Register;
 import com.dkmo.integrationnextjs.repository.ItensCarrinhoRepository;
 import com.dkmo.integrationnextjs.repository.ProductsRepository;
 import com.dkmo.integrationnextjs.repository.RegisterRepository;
@@ -34,29 +34,29 @@ public class ShoppingService {
 
    public String addToCart(String codigoProduct, String emailUser, int quantity) {
       Long codigo = Long.parseLong(codigoProduct);
-      UserRegister userRegister = registerRepository.findByEmail(emailUser);
+      Register userRegister = registerRepository.findByEmail(emailUser);
       Products product = productsRepository.findByCodigo(codigo);
-      Carrinho carrinho = userRegister.getCarrinho();
+      Cart carrinho = userRegister.getCarrinho();
          carrinho.adicionarItens(product, quantity);
          shoppingRepository.save(carrinho);
       return "Produto adicionado ao carrinho com sucesso!";
    }
    @SuppressWarnings("null")
    public void remove(Long itemId){
-      Optional<ItensCarrinho> item = itensCarrinhoRepository.findById(itemId);
+      Optional<CartItens> item = itensCarrinhoRepository.findById(itemId);
       if(item.isPresent()){
       itensCarrinhoRepository.delete(item.get());
       }
    }
    
-   public Carrinho getCarrinho(String email){
+   public Cart getCarrinho(String email){
       
-      UserRegister user = registerRepository.findByEmail(email);
+      Register user = registerRepository.findByEmail(email);
       return user.getCarrinho();
    }
    @SuppressWarnings("null")
    public int edit(Long id,int quantity){
-      Optional<ItensCarrinho> itens = itensCarrinhoRepository.findById(id);
+      Optional<CartItens> itens = itensCarrinhoRepository.findById(id);
       if(itens.isPresent()){
          itens.get().setQuantity(quantity);
          itensCarrinhoRepository.save(itens.get());

@@ -1,6 +1,6 @@
 package com.dkmo.integrationnextjs.interfaces;
 
 
-public interface ISenderMimeEmail {
+public interface MimeEmailSender {
 public void sendEmail(String email);
 }

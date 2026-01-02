@@ -21,26 +21,26 @@ import jakarta.persistence.OneToOne;
 import lombok.Data;
 @Data
 @Entity(name = "carrinho")
-public class Carrinho {
+public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @JsonBackReference
     @OneToOne(mappedBy = "carrinho",orphanRemoval=true)
-    private UserRegister userRegister;
+    private Register userRegister;
     
     @OneToMany(mappedBy = "carrinho", cascade =CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JsonManagedReference
-    private  List<ItensCarrinho> itens = new ArrayList<>();
+    private  List<CartItens> itens = new ArrayList<>();
     
-    public Carrinho(UserRegister userRegister){
+    public Cart(Register userRegister){
         this.userRegister = userRegister;
     }
 
-    public Carrinho(){}
+    public Cart(){}
 
     public void adicionarItens(Products products,int quantity){
-    ItensCarrinho item = new ItensCarrinho(this, products, quantity);
+    CartItens item = new CartItens(this, products, quantity);
     itens.add(item);
     }
     public void removeItens(Products products){

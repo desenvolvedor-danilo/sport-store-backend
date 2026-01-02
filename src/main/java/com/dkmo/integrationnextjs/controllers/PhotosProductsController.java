@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.dkmo.integrationnextjs.models.PhotosOfProducts;
+import com.dkmo.integrationnextjs.models.ProductsImages;
 import com.dkmo.integrationnextjs.services.PhotosOfProductsService;
 @RestController
 @RequestMapping("/photosproducts")
@@ -25,7 +25,7 @@ public class PhotosProductsController {
         return photosOfProductsService.savePhoto(codigo, file);
     }
     @GetMapping("/findByProductsId")
-    public ResponseEntity<List<PhotosOfProducts>> findByProductsId(@RequestParam(name = "codigo")String codigo){
+    public ResponseEntity<List<ProductsImages>> findByProductsId(@RequestParam(name = "codigo")String codigo){
     return photosOfProductsService.findByProductsId(codigo);
     }
 }

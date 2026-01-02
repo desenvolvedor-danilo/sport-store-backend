@@ -6,17 +6,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.dkmo.integrationnextjs.dto.ProductDto;
-import com.dkmo.integrationnextjs.interfaces.IEditService;
+import com.dkmo.integrationnextjs.interfaces.EditProducts;
 import com.dkmo.integrationnextjs.models.Products;
 import com.dkmo.integrationnextjs.repository.ProductsRepository;
 
 @Service
-public class EditProductService implements IEditService{
+public class EditProductService implements EditProducts{
     @Autowired
     private ProductsRepository productsRepository;
 
     @Override
-    public ResponseEntity<Products> editProdutoService(ProductDto productDto) {
+    public ResponseEntity<Products> editProductService(ProductDto productDto) {
         Products products = productsRepository.findByCodigo(productDto.codigo());
         if (products != null) {
             double desconto = 100-productDto.precoNovo()/productDto.precoAntigo()*100;
